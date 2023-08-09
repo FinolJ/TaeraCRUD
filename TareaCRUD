@@ -1,0 +1,51 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Scanner;
+
+public class crudpoo {
+
+  public static void main(String[]args) {
+    
+try {
+      
+      Connection miConexion = DriverManager.getConnection("jdbc:postgresql://localhost:5434/Soldado","postgres", "16012004");
+      System.out.println("Paso 1 conexion  completo");
+      
+    
+      Statement miStatement= miConexion.createStatement(); 
+
+   
+                            case "SELECT":
+                                String SelectSQL = "SELECT * FROM alumnos";
+                                ResultSet miResultSet = miStatement.executeQuery("SelectSQL");
+                                while(miResultSet.next()) {
+           
+        System.out.println("id    : "+ miResultSet.getInt("id_plato")+
+                       " Precio  : "+ miResultSet.getString("precio_plato")+
+                       " Nombre : "+ miResultSet.getString("nombre_plato"));     
+      
+      }
+                                
+                            
+                                String InsertSQL = "INSERT INTO alumnos(nombre_alu, edad_alu, semestre_alu, clave_c1) VALUES('Jesus', '19', '7', '1')";
+                                ResultSet miResultSet1 = miStatement.executeQuery("InsertSQL");
+                       
+                                String UpdateSQL = "UPDATE alumnos SET \"semestre_alu\" = \"NULL\" WHERE \"nombre\" = \"NULL\" ";
+                                ResultSet miResultSet2 = miStatement.executeQuery("UpdateSQL");
+
+                                String DeleteSQL = "Delete * FROM alumnos";
+                                ResultSet miResultSet3 = miStatement.executeQuery("DeleteSQL");        
+        
+
+      
+    
+      
+      
+    }catch(Exception e ) {
+      System.out.println("Fallo");
+      System.out.println(e.getMessage()); 
+    }
+  }
+}
